@@ -1,0 +1,19 @@
+{
+  "name": "cse341-node",
+  "version": "1.0.0",
+  "description": "My First Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/supercoolfire/cse341-node.git"
+  },
+  "author": "Jayser Pilapil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/supercoolfire/cse341-node/issues"
+  },
+  "homepage": "https://github.com/supercoolfire/cse341-node#readme"
+}
