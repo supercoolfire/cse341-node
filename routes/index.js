@@ -2,7 +2,12 @@ const router = require('express').Router();
 const express = require('express');
 const path = require('path');
 
-router.get('/', (req, res) => { res.send('Hello wolrds');});
+
+router.use('/', express.static(path.join(__dirname, '../frontend')));
+router.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/index.htm'));
+});
+// router.get('/', (req, res) => { res.send('Hello wolrds');});
 
 router.use('/users', require('./users'))
 

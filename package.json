@@ -27,3 +27,9 @@
     "nodemon": "^3.0.1"
   }
 }
+
+
+Nov 7 01:34:47 PM          inspect ??= defaultInspect;
+Nov 7 01:34:47 PM                  ^^^
+Nov 7 01:34:47 PM  
+Nov 7 01:34:47 PM  SyntaxError: Unexpected token '??='
