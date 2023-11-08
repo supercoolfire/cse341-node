@@ -233,3 +233,18 @@ img {
     display: block;
   }
 }
+/* customized by jay */
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+footer{
+  margin-top: auto;
+}
+.tiny{
+  font-size: 10px;
+}
+.footlooze li{
+  list-style-type: none;
+}

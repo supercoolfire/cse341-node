@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 // router.get('/', (req, res) => { res.send('Hello wolrds');});
 
 router.use('/contacts', require('./contacts'))
-router.use('/usersnpm', require('./users'))
+router.use('/users', require('./users'))
 
 router.use('/frontend', express.static(path.join(__dirname, '../frontend')));
 router.get('/frontend', (req, res) => {
