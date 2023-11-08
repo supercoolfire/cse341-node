@@ -1,0 +1,34 @@
+# GET Request
+GET https://project1-jiss.onrender.com/users
+[
+  {
+    "_id": "65498d25938f7a958cb44668",
+    "email": "admin@router.com",
+    "username": "admin",
+    "name": "admin",
+    "ipaddress": "192.168.1.1"
+  },
+  {
+    "_id": "6549384ece08dff5ef0f1c38",
+    "email": "user@router.com",
+    "username": "user",
+    "name": "user",
+    "ipaddress": "192.168.1.100"
+  },
+  {
+    "_id": "654938d7ce08dff5ef0f1c39",
+    "email": "guest@router.com",
+    "username": "guest",
+    "name": "guest",
+    "ipaddress": "192.168.1.101"
+  }
+]
+
+GET https://project1-jiss.onrender.com/users/654938d7ce08dff5ef0f1c39
+{
+  "_id": "654938d7ce08dff5ef0f1c39",
+  "email": "guest@router.com",
+  "username": "guest",
+  "name": "guest",
+  "ipaddress": "192.168.1.101"
+}

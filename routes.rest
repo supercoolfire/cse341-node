@@ -1,0 +1,27 @@
+// LOCALHOST
+###
+GET http://localhost:3000/contacts
+###
+GET http://localhost:3000/contacts/654ae4cea0e608294bb33a64
+###
+GET http://localhost:3000/contacts/654ae4cea0e608294bb33a65
+###
+GET http://localhost:3000/contacts/654ae4cea0e608294bb33a66
+###
+GET http://localhost:3000/contacts/654ae4cea0e608294bb33a67
+###
+GET http://localhost:3000/contacts/654ae4cea0e608294bb33a68
+
+// PRODUCTION Deploy
+###
+GET https://project1-jiss.onrender.com/contacts
+###
+GET http://project1-jiss.onrender.com/contacts/654ae4cea0e608294bb33a64
+###
+GET http://project1-jiss.onrender.com/contacts/654ae4cea0e608294bb33a65
+###
+GET http://project1-jiss.onrender.com/contacts/654ae4cea0e608294bb33a66
+###
+GET http://project1-jiss.onrender.com/contacts/654ae4cea0e608294bb33a67
+###
+GET http://project1-jiss.onrender.com/contacts/654ae4cea0e608294bb33a68
