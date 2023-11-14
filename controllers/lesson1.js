@@ -1,6 +1,6 @@
 const johnnyRoute = (req, res) => {
     res.send("Johnny Walker");
-  };
+};
   
 const creepyRoute = (req, res) => {
     res.send("Creepy Crawler");
