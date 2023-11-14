@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "description": ""
   },
-  "host": "https://project1-jiss.onrender.com",
+  "host": "project1-jiss.onrender.com",
   "basePath": "/",
   "schemes": [
     "https",
