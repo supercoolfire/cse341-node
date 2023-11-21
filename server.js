@@ -10,9 +10,9 @@ app.use(bodyParser.json()); // order is important, this line before routes
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader(
-    'Access-Controll-Allow_headers',
-    'Origin, X-Requested-Width, Content-Type, Accept,z-key'
-  )
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-with, Content-Type, Accept, Z-key'
+  );
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   next();
 });
@@ -27,5 +27,3 @@ mongodb.initDb((err) => {
     app.listen(port, () => {console.log(`Database is listening and node running on port ${port}`);});
   }
 });
-
-

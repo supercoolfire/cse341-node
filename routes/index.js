@@ -8,10 +8,12 @@ router.use('/', require('./swagger'));
 // });
 
 router.use('/', express.static(path.join(__dirname, '../frontend')));
+router.use('/frontend', express.static(path.join(__dirname, '../frontend')));
 router.use('/contacts', require('./contacts'));
+router.use('/user', require('./user'));
 router.use('/users', require('./users'));
 router.use('/lesson1', require('./lesson1'));
-router.use('/frontend', express.static(path.join(__dirname, '../frontend')));
+router.use('/professional', require('./professional'));
 
 
 module.exports = router;

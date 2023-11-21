@@ -6,7 +6,7 @@ async function apiFetch(url) {
 }
 
 const getData = async () => {
-  const data = await apiFetch('http://localhost:8080/professional');
+  const data = await apiFetch('https://project1-jiss.onrender.com/professional');
   displayAllData(data);
 };
 
@@ -18,6 +18,7 @@ function displayAllData(data) {
   displayLinkTitleText(data);
   displayLinkedInLink(data);
   displayGitHubLink(data);
+  displaycontactText(data);
 }
 
 function displayProfessionalName(n) {
@@ -61,4 +62,9 @@ function displayGitHubLink(data) {
   githubLink.href = data.githubLink.link;
 }
 
+
+function displaycontactText(data) {
+  let contactText = document.getElementById('contactText');
+  contactText.innerHTML = data.contactText;
+}
 getData();
