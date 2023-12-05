@@ -1,0 +1,108 @@
+// LOCALHOST
+###
+GET http://localhost:3000/contacts
+###
+GET http://localhost:3000/contacts/654ae4cea0e608294bb33a64
+###
+GET http://localhost:3000/contacts/654ae4cea0e608294bb33a65
+###
+GET http://localhost:3000/contacts/654ae4cea0e608294bb33a66
+###
+GET http://localhost:3000/contacts/654ae4cea0e608294bb33a67
+###
+GET http://localhost:3000/contacts/654ae4cea0e608294bb33a68
+
+
+// LOCALHOST
+### Get all professional
+GET http://localhost:3000/professional
+
+### Create professional
+POST http://localhost:3000/user/ HTTP/1.1
+Content-Type: application/json
+{
+  "professionalName": "Jayser Pilapil",
+  "nameLink": {
+    "firstName": "Jayser",
+    "url": ""
+  },
+  "base64Image": "",
+  "firstName": "Jayser",
+  "primaryDescription": " is a student at BYU-Idaho",
+  "workDescription1": "He is a fool-stock web developer and mobile game enthusiast",
+  "workDescription2": "He teachers a lot of cats and kitties of rope climbing.",
+  "linkTitleText": "Check this out",
+  "linkedInLink": {
+    "link": "LinkedIn",
+    "text": "https://www.youtube.com/watch?v=xvFZjo5PgG0"
+  },
+  "githubLink": {
+    "link": "GitHub",
+    "text": "https://www.youtube.com/watch?v=xvFZjo5PgG0"
+  },
+  "contactText": "Send me a message via snail mail."
+}
+
+// LOCALHOST
+### Get all contacts
+GET http://localhost:3000/contacts
+
+### Get contact by id
+GET http://localhost:3000/contacts/654ae4cea0e608294bb33a68
+
+
+### Create contact
+POST http://localhost:3000/contacts HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Rick",
+    "lastName": "Astley",
+    "email": "nevergonna@giveyou.up",
+    "favoriteColor": "White",
+    "birthday": "02/06/1966",
+    "phoneNumber": "555-5555"
+}
+
+### put contact
+PUT http://localhost:3000/contacts/65503d4ffa55b2a930d93d0e HTTP/1.1
+content-type: application/json
+
+{
+  "firstName": "Bed",
+  "lastName": "Bugs",
+  "email": "bedbug@room.com",
+  "favoriteColor": "red",
+  "birthday": "00/00/0000",
+  "phoneNumber": "555-444-8901"
+}
+
+
+### PUT contact
+POST http://localhost:3000/contacts HTTP/1.1
+content-type: application/json
+
+{
+    "firstName":"Bruce",
+    "lastName":"Wayne",
+    "email":"batman@dc.com",
+    "favoriteColor":"Black",
+    "birthday":"02/19/1970",
+    "phoneNumber":"555-5556",
+}
+### DELETE contact
+DELETE http://localhost:3000/contacts/65503d4ffa55b2a930d93d0e HTTP/1.1
+
+// PRODUCTION Deploy
+###
+GET https://project1-jiss.onrender.com/contacts
+###
+GET http://project1-jiss.onrender.com/contacts/654ae4cea0e608294bb33a64
+###
+GET http://project1-jiss.onrender.com/contacts/654ae4cea0e608294bb33a65
+###
+GET http://project1-jiss.onrender.com/contacts/654ae4cea0e608294bb33a66
+###
+GET http://project1-jiss.onrender.com/contacts/654ae4cea0e608294bb33a67
+###
+GET http://project1-jiss.onrender.com/contacts/654ae4cea0e608294bb33a68
