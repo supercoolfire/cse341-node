@@ -1,77 +1,88 @@
-const mongodb = require('../data/database');
-const ObjectId = require('mongodb').ObjectId;
+const userModel = require('../models/usersModel');
 
-const getAll = async (req, res) => {
-  //#swagger.tags=['Users]
-  const result = await mongodb.getDatabase().db().collection('users').find();
-  result.toArray().then((users) => {
-    res.setHeader('content-type', 'application/json');
-    res.status(200).json(users);
-  });
-}
+const getAllUsers = async (req, res) => {
+    console.log('Get All for users');
+    //#swagger.tags = ['users']
+    try {
+        const users = await userModel.getAllUsers();
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(500).json(error.message || 'Some error occurred while fetching users.');
+    }
+};
 
-const getSingle = async (req, res) => {
-  //#swagger.tags=['Users]
-  const userId = new ObjectId(req.params.id);
-  const result = await mongodb.getDatabase().db().collection('users').findOne({ _id: userId });
-  if (result) {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(result);
-  } else {
-    res.status(404).json({ message: 'User not found' });
-  }
-}
-
-// week2
-const createUser = async (req, res) => {
-  //#swagger.tags=['Users]
-  const user = {
-    firstName: req.body.firstName,
-    lastName: req.body.firstName,
-    email: req.body.firstName,
-    favoriteColor: req.body.favoriteColor,
-    birthday: req.body.birthday
-  };
-  const response = await mongodb.getDatabase().db().collection('users').insertOne(user)
-  if (response.acknowledged) {
-    res.status(204).send();
-  } else {
-    res.status(500).json(response.error || 'Some error occurred while inserting the user.');
-  }
+const getSingleUser = async (req, res) => {
+    console.log('Get Single for user');
+    //#swagger.tags = ['users']
+    const userId = req.params.id;
+    try {
+        const user = await userModel.getSingleUser(userId);
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json(error.message || 'Some error occurred while fetching the user.');
+    }
 };
 
 const updateUser = async (req, res) => {
-  const userId = new ObjectId(req.params.id);
-  const user = {
-    firstName: req.body.firstName,
-    lastName: req.body.firstName,
-    email: req.body.firstName,
-    favoriteColor: req.body.favoriteColor,
-    birthday: req.body.birthday
-  };
-  const response = await mongodb.getDatabase().db().collection('users').replaceOne({ _id: userId }, user)
-  if (response.modifiedCount > 0) {
-    res.status(204).send();
-  } else {
-    res.status(500).json(response.error || 'Some error occurred while updating the user.');
-  }
+    console.log('Update user');
+    //#swagger.tags = ['users']
+    const userId = req.params.id;
+    const user = {
+        username: req.body.username,
+        fullname: req.body.fullname,
+        email: req.body.email,
+        password: req.body.password
+    };
+
+    try {
+        await userModel.updateUser(userId, user);
+        res.status(204).send();
+    } catch (error) {
+        res.status(500).json(error.message || 'Some error occurred while updating this user.');
+    }
 };
 
 const deleteUser = async (req, res) => {
-  const userId = new ObjectId(req.params.id);
-  const response = await mongodb.getDatabase().db().collection('users').deleteOne({ _id: userId });
-  if (response.deleted > 0) {
-    res.status(204).send();
-  } else {
-    res.status(500).json(response.error || 'Some error occurred while deleting the user.');
-  }
+    console.log("Delete users");
+    //#swagger.tags = ['users']
+    const userId = req.params.id;
+
+    try {
+        const response = await userModel.deleteUser(userId);
+        if (response.deletedCount > 0) {
+            res.status(204).send();
+        } else {
+            res.status(500).json(response.error || 'Some error occurred while deleting this user.');
+        }
+    } catch (error) {
+        res.status(500).json(error.message || 'Some error occurred while deleting this user.');
+    }
+};
+
+const createUser = async (req, res) => {
+    console.log("create users");
+    //#swagger.tags = ['users']
+    const user = {
+        username: req.body.username,
+        fullname: req.body.fullname,
+        email: req.body.email,
+        password: req.body.password
+    };
+
+    try {
+        await userModel.createUser(user);
+        res.status(204).send();
+    } catch (error) {
+        res.status(500).json(error.message || 'Some error occurred while creating the user.');
+    }
 };
 
 module.exports = {
-  getAll,
-  getSingle,
-// week2
-  createUser,
-  updateUser,
-  deleteUser
-}
+    getAllUsers,
+    getSingleUser,
+    createUser,
+    updateUser,
+    deleteUser
+};

@@ -74,7 +74,7 @@ app.get("/", (req, res) => {
     // prevent null
     req.session.user.displayName == null ? req.session.user.username : req.session.user.displayName
   }` : "Successfully logged out";
-  console.log(req.session)
+  // console.log(req.session)
   res.render("index", { message, req }); // Pass the req object for dynamic login logout link
 });
 // my mod end *****************************************************

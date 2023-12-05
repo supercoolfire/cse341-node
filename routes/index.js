@@ -12,11 +12,11 @@ router.use('/', require('./swagger'));
 //     res.send('Hello week2');
 // });
 
-router.use('/contacts', require('./contacts'));
-router.use('/user', require('./user'));
+// router.use('/contacts', require('./contacts'));
+// router.use('/user', require('./user'));
 router.use('/users', require('./users'));
-router.use('/lesson1', require('./lesson1'));
-router.use('/professional', require('./professional'));
+// router.use('/lesson1', require('./lesson1'));
+// router.use('/professional', require('./professional'));
 
 router.get("/login", passport.authenticate("github"));
 router.get("/logout", function(req, res, next){
