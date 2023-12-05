@@ -6,7 +6,6 @@ const doc = {
     },
     // host: 'localhost:3000',
     // schemes: ['http', 'https']
-
     host: 'cse341-node-project2-w4.onrender.com',
     schemes: ['https', 'http']
 };
