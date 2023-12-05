@@ -1,3 +1,7 @@
+# 
+#  localhost
+# 
+
 ###
 #get all
 GET http://localhost:3000/user
@@ -12,10 +16,10 @@ POST http://localhost:3000/user HTTP/1.1
 Content-Type: application/json
 
 {   
-  "username": "Pea",
-  "fullname": "Stacio",
-  "email": "e@mail.com",
-  "password": "1Abcdef?"
+  "username": "JohnDoe",
+  "fullname": "John Doe",
+  "email": "john.doe@example.com",
+  "password": "P@ssw0rd"
 }
 
 ###
@@ -31,7 +35,72 @@ Content-Type: application/json
 }
 
 ###
+#update
+PUT http://localhost:3000/user/655aa391b31bc11814fa684b HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "Alice",
+  "fullname": "Alice Johnson",
+  "email": "alice.johnson@example.com",
+  "password": "SecurePass123!"
+}
+
+
+###
 #delete -- need to add id
 DELETE http://localhost:3000/user/655aa391b31bc11814fa684b
 
+
+# 
+#  Render
+# 
+
 ###
+#get all
+GET https://cse341-node-project2-w4.onrender.com/user
+
+###
+#get single-- need to add id
+GET https://cse341-node-project2-w4.onrender.com/user/655aa391b31bc11814fa684b
+
+###
+#create
+POST https://cse341-node-project2-w4.onrender.com/user HTTP/1.1
+Content-Type: application/json
+
+{   
+  "username": "JohnDoe",
+  "fullname": "John Doe",
+  "email": "john.doe@example.com",
+  "password": "P@ssw0rd"
+}
+
+###
+#update
+PUT https://cse341-node-project2-w4.onrender.com/user/655aa391b31bc11814fa684b HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "Pea",
+  "fullname": "Stacio",
+  "email": "e@mail.com",
+  "password": "1Abcdef?"
+}
+
+###
+#update
+PUT https://cse341-node-project2-w4.onrender.com/user/655aa391b31bc11814fa684b HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "Alice",
+  "fullname": "Alice Johnson",
+  "email": "alice.johnson@example.com",
+  "password": "SecurePass123!"
+}
+
+
+###
+#delete -- need to add id
+DELETE https://cse341-node-project2-w4.onrender.com/user/655aa391b31bc11814fa684b
