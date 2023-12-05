@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "description": ""
   },
-  "host": "cse341-node-project2-w4.onrender.com/",
+  "host": "cse341-node-project2-w4.onrender.com",
   "basePath": "/",
   "schemes": [
     "https",
