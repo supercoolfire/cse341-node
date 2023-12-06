@@ -41,7 +41,7 @@ const validateUser = (req, res, next) => {
         fullname: 'required|string',
         email: 'required|email',
         favoriteColor: 'string',
-        birthday: 'required|date|dateFormat:MM/DD/YYYY',
+        birthday: ['required', 'date'],
         country: 'string',
         password: ['required', `regex:${/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/}`]
     };
@@ -49,6 +49,15 @@ const validateUser = (req, res, next) => {
     const validation = new Validator(req.body, validationRule);
 
     validation.passes(() => {
+        // Additional logic for custom date format validation
+        if (!isValidDateFormat(req.body.birthday, 'MM/DD/YYYY')) {
+            validation.errors.add('birthday', 'Birthday must be in MM/DD/YYYY format');
+            return res.status(412).send({
+                success: false,
+                message: 'Validation failed',
+                data: validation.errors.all()
+            });
+        }
         next();
     });
 

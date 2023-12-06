@@ -14,7 +14,7 @@ const getSingleUser = async (userId) => {
 
 const updateUser = async (userId, user) => {
     if (!user.username || !user.fullname || !user.email || !user.password) {
-        throw new Error('All fields (username, fullname, email, birthday, password) are required.');
+        throw new Error('All fields (username, fullname, email, password) are required.');
     }
 
     const response = await mongodb.getDatabase().db().collection('users').replaceOne({ _id: new ObjectId(userId) }, user);
@@ -28,7 +28,7 @@ const deleteUser = async (userId) => {
 
 const createUser = async (user) => {
     if (!user.username || !user.fullname || !user.email || !user.password) {
-        throw new Error('All fields (username, fullname, email, birthday, password) are required.');
+        throw new Error('All fields (username, fullname, email, password) are required.');
     }
 
     const response = await mongodb.getDatabase().db().collection('users').insertOne(user);

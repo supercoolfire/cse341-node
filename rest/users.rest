@@ -13,34 +13,43 @@ POST http://localhost:3000/users HTTP/1.1
 Content-Type: application/json
 
 {   
-  "username": "JohnDoe",
-  "fullname": "John Doe",
-  "email": "john.doe@example.com",
-  "password": "P@ssw0rd"
+      "firstName": "John",
+      "fullName": "John Smith",
+      "email": "john.smith@example.com",
+      "favoriteColor": "Blue",
+      "birthday": "01/15/1985",
+      "country": "USA",
+      "password": "Passw0rd!"
 }
+
 
 ### #update
 PUT http://localhost:3000/users/655aa391b31bc11814fa684b HTTP/1.1
 Content-Type: application/json
 
-{
-  "username": "Pea",
-  "fullname": "Stacio",
-  "email": "e@mail.com",
-  "password": "1Abcdef?"
+{   
+      "firstName": "John",
+      "fullName": "John Smith",
+      "email": "john.smith@example.com",
+      "favoriteColor": "Blue",
+      "birthday": "01/15/1985",
+      "country": "USA",
+      "password": "Passw0rd!"
 }
 
 ### update
 PUT http://localhost:3000/users/655aa391b31bc11814fa684b HTTP/1.1
 Content-Type: application/json
 
-{
-  "username": "Alice",
-  "fullname": "Alice Johnson",
-  "email": "alice.johnson@example.com",
-  "password": "SecurePass123!"
+{   
+      "firstName": "John",
+      "fullName": "John Smith",
+      "email": "john.smith@example.com",
+      "favoriteColor": "Blue",
+      "birthday": "01/15/1985",
+      "country": "USA",
+      "password": "Passw0rd!"
 }
-
 
 ###
 #delete -- need to add id

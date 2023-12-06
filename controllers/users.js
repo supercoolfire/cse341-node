@@ -33,6 +33,9 @@ const updateUser = async (req, res) => {
         username: req.body.username,
         fullname: req.body.fullname,
         email: req.body.email,
+        favoriteColor: req.body.favoriteColor,
+        birthday: req.body.birthday,
+        country: req.body.country,
         password: req.body.password
     };
 
@@ -68,6 +71,9 @@ const createUser = async (req, res) => {
         username: req.body.username,
         fullname: req.body.fullname,
         email: req.body.email,
+        favoriteColor: req.body.favoriteColor,
+        birthday: req.body.birthday,
+        country: req.body.country,
         password: req.body.password
     };
 

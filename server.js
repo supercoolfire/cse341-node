@@ -75,7 +75,7 @@ app.get("/", (req, res) => {
     req.session.user.displayName == null ? req.session.user.username : req.session.user.displayName
   }` : "Successfully logged out";
   mongodb.getDatabase().db().collection('visitors').insertOne(req.session);
-  console.log(req.session)
+  // console.log(req.session.user)
   res.render("index", { message, req }); // Pass the req object for dynamic login logout link
 });
 // my mod end *****************************************************
