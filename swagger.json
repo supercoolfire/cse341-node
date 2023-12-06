@@ -5,11 +5,11 @@
     "version": "1.0.0",
     "description": ""
   },
-  "host": "localhost:3000",
+  "host": "cse341-node-project2-w4.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http",
-    "https"
+    "https",
+    "http"
   ],
   "paths": {
     "/login": {
@@ -55,6 +55,9 @@
           "200": {
             "description": "OK"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -72,6 +75,9 @@
             "schema": {
               "type": "object",
               "properties": {
+                "birthday": {
+                  "example": "any"
+                },
                 "username": {
                   "example": "any"
                 },
@@ -79,6 +85,12 @@
                   "example": "any"
                 },
                 "email": {
+                  "example": "any"
+                },
+                "favoriteColor": {
+                  "example": "any"
+                },
+                "country": {
                   "example": "any"
                 },
                 "password": {
@@ -91,6 +103,9 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "412": {
             "description": "Precondition Failed"
@@ -122,6 +137,9 @@
           "200": {
             "description": "OK"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -145,6 +163,9 @@
             "schema": {
               "type": "object",
               "properties": {
+                "birthday": {
+                  "example": "any"
+                },
                 "username": {
                   "example": "any"
                 },
@@ -152,6 +173,12 @@
                   "example": "any"
                 },
                 "email": {
+                  "example": "any"
+                },
+                "favoriteColor": {
+                  "example": "any"
+                },
+                "country": {
                   "example": "any"
                 },
                 "password": {
@@ -164,6 +191,9 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "412": {
             "description": "Precondition Failed"
@@ -189,6 +219,9 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
