@@ -13,7 +13,7 @@ router.use('/', require('./swagger'));
 // });
 
 // router.use('/contacts', require('./contacts'));
-// router.use('/user', require('./user'));
+router.use('/user', require('./user'));
 router.use('/users', require('./users'));
 // router.use('/lesson1', require('./lesson1'));
 // router.use('/professional', require('./professional'));
