@@ -1,10 +1,10 @@
-const userModel = require('../models/usersModel');
+const usersModel = require('../models/usersModel');
 
 const getAllUsers = async (req, res) => {
     console.log('Get All for users');
     //#swagger.tags = ['users']
     try {
-        const users = await userModel.getAllUsers();
+        const users = await usersModel.getAllUsers();
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(users);
     } catch (error) {
@@ -17,7 +17,7 @@ const getSingleUser = async (req, res) => {
     //#swagger.tags = ['users']
     const userId = req.params.id;
     try {
-        const user = await userModel.getSingleUser(userId);
+        const user = await usersModel.getSingleUser(userId);
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(user);
     } catch (error) {

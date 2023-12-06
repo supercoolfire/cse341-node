@@ -2,6 +2,7 @@ const router = require('express').Router();
 const express = require('express');
 const passport = require('passport');
 const path = require('path');
+const overrideMiddleware = require('./override');
 
 // Serve static files
 // router.use('/', express.static(path.join(__dirname, '../frontend')));
@@ -15,6 +16,9 @@ router.use('/', require('./swagger'));
 // router.use('/contacts', require('./contacts'));
 router.use('/user', require('./user'));
 router.use('/users', require('./users'));
+
+router.use(overrideMiddleware);
+
 // router.use('/lesson1', require('./lesson1'));
 // router.use('/professional', require('./professional'));
 
@@ -36,6 +40,7 @@ router.get("/logout", function(req, res, next){
         res.redirect("/");
     });
 });
+
 
 
 module.exports = router;

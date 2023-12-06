@@ -74,8 +74,6 @@ app.get("/", (req, res) => {
     // prevent null
     req.session.user.displayName == null ? req.session.user.username : req.session.user.displayName
   }` : "Successfully logged out";
-  mongodb.getDatabase().db().collection('visitors').insertOne(req.session);
-  // console.log(req.session.user)
   res.render("index", { message, req }); // Pass the req object for dynamic login logout link
 });
 // my mod end *****************************************************
@@ -85,6 +83,8 @@ app.get("/github/callback", passport.authenticate("github", {
 }),
   (req, res) => {
     req.session.user = req.user;
+    mongodb.getDatabase().db().collection('visitors').insertOne(req.session.user);
+    // console.log(req.user)
     res.redirect("/");
   });
 

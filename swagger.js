@@ -4,10 +4,10 @@ const doc = {
     info: {
         title: 'Users Api'
     },
-    // host: 'localhost:3000',
-    // schemes: ['http', 'https']
-    host: 'cse341-node-project2-w4.onrender.com',
-    schemes: ['https', 'http']
+    host: 'localhost:3000',
+    schemes: ['http', 'https']
+    // host: 'cse341-node-project2-w4.onrender.com',
+    // schemes: ['https', 'http']
 };
 
 const outputFile = './swagger.json';
