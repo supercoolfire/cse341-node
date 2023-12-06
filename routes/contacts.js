@@ -8,8 +8,8 @@ router.get('/', contactController.getAll);
 router.get('/:id', contactController.getSingle);
 
 // week2
-router.post('/', isAuthenticated, validation.saveContact, contactController.createContact);
-router.put('/:id', isAuthenticated, validation.saveContact, contactController.updateContact);
+router.post('/', isAuthenticated, validation.validateContact, contactController.createContact);
+router.put('/:id', isAuthenticated, validation.validateContact, contactController.updateContact);
 router.delete('/:id', isAuthenticated, contactController.deleteContact);
 
 module.exports = router;
