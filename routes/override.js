@@ -15,6 +15,12 @@ router.use((req, res, next) => {
         return res.redirect(req.originalUrl);
     }
 
+    if (req.query.role === 'guest' && !req.session.user) {
+        // Simulate a user with the role 'themoderator' and redirect
+        req.session.user = { username: 'Earthling' }
+        return res.redirect(req.originalUrl);
+    }
+
     // Continue to the next middleware if not redirecting
     next();
 });
