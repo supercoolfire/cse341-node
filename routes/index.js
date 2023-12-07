@@ -6,7 +6,7 @@ const overrideMiddleware = require('./override');
 
 // Serve static files
 // router.use('/', express.static(path.join(__dirname, '../frontend')));
-router.use('/frontend', express.static(path.join(__dirname, '../frontend')));
+router.use('/frontend', express.static(path.join(__dirname, '../static/frontend')));
 
 router.use('/', require('./swagger'));
 // router.get('/', (req, res) => {

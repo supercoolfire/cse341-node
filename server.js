@@ -14,44 +14,44 @@ const cors = require('cors');
 const port = process.env.PORT || 3000;
 const app = express();
 
-app.use(bodyParser.json())
-  .use(session({
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: true,
-  }))
-  // This is the basic express session({...}) initialization.
-  .use(passport.initialize())
-  // init passport on every route call.
-  .use(passport.session())
-  // allow passport to use "express-session"
-  .use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-with, Content-Type, Accept, Z-key');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    next();
-  })
-  .use(cors({ methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']}))
-  .use(cors({ origin: '*'}))
-  .use('/', require('./routes'));
+app.use(bodyParser.json());
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+}));
+// This is the basic express session({...}) initialization.
+app.use(passport.initialize());
+// init passport on every route call.
+app.use(passport.session());
+// allow passport to use "express-session"
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-with, Content-Type, Accept, Z-key');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  next();
+});
+app.use(cors({ methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']}));
+app.use(cors({ origin: '*'}));
+app.use('/', require('./routes'));
 
-  passport.use(new GitHubStrategy({
-    clientID: process.env.GITHUB_CLIENT_ID,
-    clientSecret: process.env.GITHUB_SECRET,
-    callbackURL: process.env.CALLBACK_URL
-  }, (accessToken, refreshToken, profile, done) => {
-    console.log('GitHub authentication successful');
-    // console.log('accessToken');
-    // console.log(accessToken);
-    // console.log('refreshToken');
-    // console.log(refreshToken);
-    // console.log('profile');
-    // console.log(profile);
-    // console.log('done');
-    // console.log(done);
-    // Additional logging or processing if needed
-    return done(null, profile);
-  }));
+passport.use(new GitHubStrategy({
+  clientID: process.env.GITHUB_CLIENT_ID,
+  clientSecret: process.env.GITHUB_SECRET,
+  callbackURL: process.env.CALLBACK_URL
+}, (accessToken, refreshToken, profile, done) => {
+  console.log('GitHub authentication successful');
+  // console.log('accessToken');
+  // console.log(accessToken);
+  // console.log('refreshToken');
+  // console.log(refreshToken);
+  // console.log('profile');
+  // console.log(profile);
+  // console.log('done');
+  // console.log(done);
+  // Additional logging or processing if needed
+  return done(null, profile);
+}));
 
 passport.serializeUser((user, done) => {
   done(null, user);
@@ -67,7 +67,7 @@ passport.deserializeUser((user, done) => {
 const path = require('path');
 // Set view engine and views directory
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "frontend"));
+app.set("views", path.join(__dirname, "/static/frontend"));
 
 app.get("/", (req, res) => {
   const message = req.session.user !== undefined ? `Logged in as ${
