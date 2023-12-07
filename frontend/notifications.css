@@ -1,0 +1,13 @@
+/* notifications.css */
+#sessionStatus {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: orange;
+    color: white;
+    text-align: center;
+    z-index: 1000; /* Adjust the z-index to ensure the notification appears above other elements */
+  }
+  

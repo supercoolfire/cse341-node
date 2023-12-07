@@ -1,0 +1,48 @@
+[
+    {
+      "firstName": "John",
+      "fullName": "John Smith",
+      "email": "john.smith@example.com",
+      "favoriteColor": "Blue",
+      "birthday": "01/15/1985",
+      "country": "USA",
+      "password": "Passw0rd!"
+    },
+    {
+      "firstName": "Alice",
+      "fullName": "Alice Johnson",
+      "email": "alice.johnson@example.com",
+      "favoriteColor": "Green",
+      "birthday": "05/22/1990",
+      "country": "Canada",
+      "password": "Secure123@"
+    },
+    {
+      "firstName": "Bob",
+      "fullName": "Bob Brown",
+      "email": "bob.brown@example.com",
+      "favoriteColor": "Red",
+      "birthday": "12/07/1980",
+      "country": "UK",
+      "password": "B0bPass!"
+    },
+    {
+      "firstName": "Eva",
+      "fullName": "Eva White",
+      "email": "eva.white@example.com",
+      "favoriteColor": "Purple",
+      "birthday": "08/30/1995",
+      "country": "Australia",
+      "password": "Ev@Pass123"
+    },
+    {
+      "firstName": "Daniel",
+      "fullName": "Daniel Lee",
+      "email": "daniel.lee@example.com",
+      "favoriteColor": "Yellow",
+      "birthday": "03/10/1988",
+      "country": "Japan",
+      "password": "D@nnyPass"
+    }
+  ]
+  
