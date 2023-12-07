@@ -78,24 +78,6 @@ app.get("/", (req, res) => {
 });
 // my mod end *****************************************************
 
-app.get("/github/callback", passport.authenticate("github", {
-  failureRedirect: "/api-docs", session: false
-}),
-  (req, res) => {
-    req.session.user = req.user;
-    mongodb.getDatabase().db().collection('visitors').insertOne({ 
-      timestamp: new Date(), 
-      metadata: { 
-        user: req.user.username,
-        displayName: req.user.displayName,
-        profileUrl: req.user.profileUrl,
-        avatar_url: req.user.photos[0].value,
-        }
-    });
-    
-    // console.log(req.user)
-    res.redirect("/");
-  });
 
 // Error Handling
 process.on('uncaughtException', (err, origin) => {

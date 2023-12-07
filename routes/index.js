@@ -1,26 +1,23 @@
 const router = require('express').Router();
 const express = require('express');
+const githubRoute = require('./githubRoute')
 const passport = require('passport');
 const path = require('path');
 const overrideMiddleware = require('./override');
 
 // Serve static files
-// router.use('/', express.static(path.join(__dirname, '../frontend')));
+router.use('/static', express.static(path.join(__dirname, '../static')));
 router.use('/frontend', express.static(path.join(__dirname, '../static/frontend')));
 
 router.use('/', require('./swagger'));
-// router.get('/', (req, res) => {
-//     res.send('Hello week2');
-// });
-
 // router.use('/contacts', require('./contacts'));
+router.use('/github', githubRoute);
+// router.use('/lesson1', require('./lesson1'));
+// router.use('/professional', require('./professional'));
+router.use(overrideMiddleware);
 router.use('/user', require('./user'));
 router.use('/users', require('./users'));
 
-router.use(overrideMiddleware);
-
-// router.use('/lesson1', require('./lesson1'));
-// router.use('/professional', require('./professional'));
 
 router.get("/login", passport.authenticate("github"));
 router.get("/logout", function(req, res, next){
