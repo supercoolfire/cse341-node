@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv').config();
 const mongodb = require('./data/database');
 const passport = require('passport');
-const session = require("express-session");
+const session = require('express-session');
 const GitHubStrategy = require('passport-github2').Strategy;
 const cors = require('cors');
 
@@ -66,8 +66,8 @@ passport.deserializeUser((user, done) => {
 // my mod start *****************************************************
 const path = require('path');
 // Set view engine and views directory
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "/static/frontend"));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '/static/frontend'));
 
 
 // my mod end *****************************************************
