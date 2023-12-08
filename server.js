@@ -69,13 +69,7 @@ const path = require('path');
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/static/frontend"));
 
-app.get("/", (req, res) => {
-  const message = req.session.user !== undefined ? `Logged in as ${
-    // prevent null
-    req.session.user.displayName == null ? req.session.user.username : req.session.user.displayName
-  }` : "Successfully logged out";
-  res.render("index", { message, req }); // Pass the req object for dynamic login logout link
-});
+
 // my mod end *****************************************************
 
 

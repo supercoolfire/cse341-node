@@ -18,7 +18,13 @@ router.use(overrideMiddleware);
 router.use('/user', require('./user'));
 router.use('/users', require('./users'));
 
-
+router.get("/", (req, res) => {
+    const message = req.session.user !== undefined ? `Logged in as ${
+      // prevent null
+      req.session.user.displayName == null ? req.session.user.username : req.session.user.displayName
+    }` : "Successfully logged out";
+    res.render("index", { message, req }); // Pass the req object for dynamic login logout link
+  });
 router.get("/login", passport.authenticate("github"));
 router.get("/logout", function(req, res, next){
     req.logout(function(err){
