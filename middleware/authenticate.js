@@ -3,34 +3,29 @@ const mongodb = require('../data/database');
 const isAuthenticated = (req, res, next) => {
   if (req.session.user === undefined) {
     const message = "You do not have access. You need to login";
-    filterAPI(req, res, message);
+    filterAPI(req, res, 403, message);
   } else {
     next();
   }
 };
 
-function filterAPI(req, res, message) {
-  // Check if the request is for an API endpoint
-  if (req.originalUrl.startsWith('/api')) {
-    return res.status(401).json({ message });
-  } else {
-    const data = {
-      message: message,
-      req: req ,
-    };
-    res.render('frontend/index', data);
-  }
+function filterAPI(req, res, status, message) {
+  const data = {
+    message: message,
+    req: req,
+  };
+  res.status(status).render('index', data);
 }
 
 const isGod = async (req, res, next) => {
   if (req.session.user === undefined) {
     const message = "You do not have access. You need to login";
-    filterAPI(res, message);
+    filterAPI(req, res, 401, message);
   } else {
     const user = req.session.user.username;
     
     try {
-      const rolesCollection = mongodb.getDatabase().db('project1').collection('roles');
+      const rolesCollection = mongodb.getDatabase().db().collection('roles');
       // console.log(rolesCollection)
       const userRole = await rolesCollection.findOne({ login: user });
 
@@ -41,11 +36,13 @@ const isGod = async (req, res, next) => {
         console.log('You are almighty');
         next();
       } else {
-        res.status(403).json({ message: 'You do not have mighty super user privileges.' });
+        message = 'You do not have mighty super user privileges.';
+        filterAPI(req, res, 403, message);
       }
     } catch (error) {
       console.error('Error checking mighty super user role:', error);
-      res.status(500).json({ message: 'Internal server corrupted by evil thing.' });
+      message = 'Internal server corrupted by evil thing.';
+      filterAPI(req, res, 500, message);
     }
   }
 };
@@ -53,12 +50,12 @@ const isGod = async (req, res, next) => {
 const isAdmin = async (req, res, next) => {
   if (req.session.user === undefined) {
     const message = "You do not have access. You need to login";
-    filterAPI(res, message);
+    filterAPI(req, res, 401, message);
   } else {
     const user = req.session.user.username;
     
     try {
-      const rolesCollection = mongodb.getDatabase().db('project1').collection('roles');
+      const rolesCollection = mongodb.getDatabase().db().collection('roles');
       // console.log(rolesCollection)
       const userRole = await rolesCollection.findOne({ login: user });
 
@@ -75,11 +72,13 @@ const isAdmin = async (req, res, next) => {
         console.log('You are admin');
         next();
       } else {
-        res.status(403).json({ message: 'You do not have admin privileges.' });
+        message = 'You do not have admin privileges.';
+        filterAPI(req, res, 403, message);
       }
     } catch (error) {
       console.error('Error checking admin role:', error);
-      res.status(500).json({ message: 'Internal server error' });
+      message = 'Internal server error';
+      filterAPI(req, res, 500, message);
     }
   }
 };
@@ -87,7 +86,7 @@ const isAdmin = async (req, res, next) => {
 const isModerator = async (req, res, next) => {
   if (req.session.user === undefined) {
     const message = "You do not have access. You need to login";
-    filterAPI(res, message);
+    filterAPI(req, res, 401, message);
   } else {
     const user = req.session.user.username;
 
@@ -114,11 +113,13 @@ const isModerator = async (req, res, next) => {
         next();
       } 
       else {
-        res.status(403).json({ message: 'You do not have moderator privileges.' });
+        message = 'You do not have moderator privileges.';
+        filterAPI(req, res, 403, message);
       }
     } catch (error) {
       console.error('Error checking moderator role:', error);
-      res.status(500).json({ message: 'Internal server error' });
+      message = 'Internal server error';
+      filterAPI(req, res, 500, message);
     }
   }
 };
