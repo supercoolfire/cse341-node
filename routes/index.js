@@ -19,29 +19,44 @@ router.use('/user', require('./user'));
 router.use('/users', require('./users'));
 
 router.get("/", (req, res) => {
-    const message = req.session.user !== undefined ? `Logged in as ${
-      // prevent null
-      req.session.user.displayName == null ? req.session.user.username : req.session.user.displayName
-    }` : "Successfully logged out";
-    res.render("index", { message, req }); // Pass the req object for dynamic login logout link
+  if (req.session.user !== undefined) {
+    // console.log(`req.session.user: ${req.session.user}`);
+    if (req.session.user.displayName !== null) {
+      // console.log(`req.session.user.displayName: ${req.session.user.displayName}`);
+      res.locals.message = `Logged in as ${req.session.user.displayName}`;
+    } else {
+      // console.log(`req.session.user.username: ${req.session.user.username}`);
+      res.locals.message = `Logged in as ${req.session.user.username}`;
+    }
+  } else {
+    if (req.session.goodbye == true) {
+      res.locals.message = 'Thank you for visiting. You are successfully logged out!';
+      // console.log(`1 res.locals.message: ${res.locals.message}`);
+      req.session.goodbye = false;
+    } else {
+      // console.log(`0 res.locals.message: ${res.locals.message}`);
+      res.locals.message = "Register now, it's FREE!";
+    }
+  }
+  const data = {
+    message: res.locals.message,
+    req
+  };
+  res.render("index", data); // Pass the req object for dynamic login logout link
   });
+
+
 router.get("/login", passport.authenticate("github"));
 router.get("/logout", function(req, res, next){
-    req.logout(function(err){
-        if (err){return next(err);}
-        res.redirect("/");
-    });
-      // Destroy the session
-    req.session.destroy((err) => {
-        console.log(req.session)
-        if (err) {
-            console.error("Error destroying session:", err);
-            return res.status(500).send("Internal Server Error");
-        }
-
-        // Redirect to the home page or any other desired location after logout
-        res.redirect("/");
-    });
+  req.session.goodbye = true;
+  // req.logout((err) => {
+  //   if (err) {
+  //     return next(err);
+  //   }
+  // })
+  req.session.user = undefined;
+  console.log(`logout req.session.goodbye: ${req.session.goodbye}`)
+  res.redirect("/");
 });
 
 
