@@ -1,0 +1,52 @@
+[
+  {
+    "_id": "656f907b4a93604152311ba9",
+    "firstName": "John",
+    "fullName": "John Smith",
+    "email": "john.smith@example.com",
+    "favoriteColor": "Blue",
+    "birthday": "01/15/1985",
+    "country": "USA",
+    "password": "Passw0rd!"
+  },
+  {
+    "_id": "656f907b4a93604152311baa",
+    "firstName": "Alice",
+    "fullName": "Alice Johnson",
+    "email": "alice.johnson@example.com",
+    "favoriteColor": "Green",
+    "birthday": "05/22/1990",
+    "country": "Canada",
+    "password": "Secure123@"
+  },
+  {
+    "_id": "656f907b4a93604152311bab",
+    "firstName": "Bob",
+    "fullName": "Bob Brown",
+    "email": "bob.brown@example.com",
+    "favoriteColor": "Red",
+    "birthday": "12/07/1980",
+    "country": "UK",
+    "password": "B0bPass!"
+  },
+  {
+    "_id": "656f907b4a93604152311bac",
+    "firstName": "Eva",
+    "fullName": "Eva White",
+    "email": "eva.white@example.com",
+    "favoriteColor": "Purple",
+    "birthday": "08/30/1995",
+    "country": "Australia",
+    "password": "Ev@Pass123"
+  },
+  {
+    "_id": "656f907b4a93604152311bad",
+    "firstName": "Daniel",
+    "fullName": "Daniel Lee",
+    "email": "daniel.lee@example.com",
+    "favoriteColor": "Yellow",
+    "birthday": "03/10/1988",
+    "country": "Japan",
+    "password": "D@nnyPass"
+  }
+]

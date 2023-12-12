@@ -1,0 +1,32 @@
+[
+    {
+      "_id": "657049ea4a93604152311bcd",
+      "login": "supercoolfire",
+      "role": "god"
+    },
+    {
+      "_id": "657049ea4a93604152311bce",
+      "login": "LourencoLegend",
+      "role": "moderator"
+    },
+    {
+      "_id": "657049ea4a93604152311bcf",
+      "login": "erodgeStudent",
+      "role": "moderator"
+    },
+    {
+      "_id": "65708aa44a93604152311bd5",
+      "login": "themoderator",
+      "role": "moderator"
+    },
+    {
+      "_id": "657097b94a93604152311bd7",
+      "login": "theadmin",
+      "role": "admin"
+    },
+    {
+      "_id": "6570ad804a93604152311be6",
+      "login": "Alien-life-form",
+      "role": "default"
+    }
+  ]

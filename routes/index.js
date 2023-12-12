@@ -15,6 +15,7 @@ router.use('/github', githubRoute);
 // router.use('/lesson1', require('./lesson1'));
 // router.use('/professional', require('./professional'));
 router.use(overrideMiddleware);
+router.use('/roles', require('./roles'));
 router.use('/user', require('./user'));
 router.use('/users', require('./users'));
 
