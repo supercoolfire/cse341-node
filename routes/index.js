@@ -10,9 +10,9 @@ router.use('/static', express.static(path.join(__dirname, '../static')));
 router.use('/frontend', express.static(path.join(__dirname, '../static/frontend')));
 
 router.use('/', require('./swagger'));
-// router.use('/contacts', require('./contacts'));
+router.use('/contacts/', require('./contacts'));
 router.use('/github', githubRoute);
-// router.use('/lesson1', require('./lesson1'));
+router.use('/lesson1', require('./lesson1'));
 // router.use('/professional', require('./professional'));
 router.use(overrideMiddleware);
 router.use('/roles', require('./roles'));
@@ -46,7 +46,6 @@ router.get("/", (req, res) => {
   res.render("index", data); // Pass the req object for dynamic login logout link
   });
 
-
 router.get("/login", passport.authenticate("github"));
 router.get("/logout", function(req, res, next){
   req.session.goodbye = true;
@@ -59,7 +58,5 @@ router.get("/logout", function(req, res, next){
   console.log(`logout req.session.goodbye: ${req.session.goodbye}`)
   res.redirect("/");
 });
-
-
 
 module.exports = router;
