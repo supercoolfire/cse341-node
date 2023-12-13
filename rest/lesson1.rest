@@ -1,0 +1,16 @@
+# 
+#  localhost
+# 
+
+
+### johnnywalker
+GET http://localhost:3000/lesson1/johnnywalker
+
+### creepycrawler
+GET http://localhost:3000/lesson1/creepycrawler
+
+### speedyggonzales
+GET http://localhost:3000/lesson1/speedyggonzales
+
+### slowpokerramirez
+GET http://localhost:3000/lesson1/slowpokerramirez
