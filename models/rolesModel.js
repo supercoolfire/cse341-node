@@ -13,7 +13,7 @@ const getSingleRole = async (roleId) => {
 };
 
 const updateRole = async (roleId, role) => {
-    if (!role.rolename || !role.fullname || !role.email || !role.password) {
+    if (!role.login || !role.role) {
         throw new Error('All fields (rolename, fullname, email, password) are required.');
     }
 
@@ -27,7 +27,7 @@ const deleteRole = async (roleId) => {
 };
 
 const createRole = async (role) => {
-    if (!role.rolename || !role.fullname || !role.email || !role.password) {
+    if (!role.login || !role.role) {
         throw new Error('All fields (rolename, fullname, email, password) are required.');
     }
 
