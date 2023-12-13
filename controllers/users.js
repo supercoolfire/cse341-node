@@ -40,7 +40,7 @@ const updateUser = async (req, res) => {
     };
 
     try {
-        await userModel.updateUser(userId, user);
+        await usersModel.updateUser(userId, user);
         res.status(204).send();
     } catch (error) {
         res.status(500).json(error.message || 'Some error occurred while updating this user.');
@@ -53,7 +53,7 @@ const deleteUser = async (req, res) => {
     const userId = req.params.id;
 
     try {
-        const response = await userModel.deleteUser(userId);
+        const response = await usersModel.deleteUser(userId);
         if (response.deletedCount > 0) {
             res.status(204).send();
         } else {
@@ -78,7 +78,7 @@ const createUser = async (req, res) => {
     };
 
     try {
-        await userModel.createUser(user);
+        await usersModel.createUser(user);
         res.status(204).send();
     } catch (error) {
         res.status(500).json(error.message || 'Some error occurred while creating the user.');

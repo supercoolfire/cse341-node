@@ -5,11 +5,11 @@
     "version": "1.0.0",
     "description": ""
   },
-  "host": "cse341-node-project2-w4.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "https",
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
     "/": {
@@ -516,9 +516,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "birthday": {
-                  "example": "any"
-                },
                 "username": {
                   "example": "any"
                 },
@@ -529,6 +526,9 @@
                   "example": "any"
                 },
                 "favoriteColor": {
+                  "example": "any"
+                },
+                "birthday": {
                   "example": "any"
                 },
                 "country": {
@@ -598,9 +598,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "birthday": {
-                  "example": "any"
-                },
                 "username": {
                   "example": "any"
                 },
@@ -611,6 +608,9 @@
                   "example": "any"
                 },
                 "favoriteColor": {
+                  "example": "any"
+                },
+                "birthday": {
                   "example": "any"
                 },
                 "country": {
