@@ -1,4 +1,36 @@
-// authMiddleware.js
+/*
+ * Created by: Jayser Pilapil
+ * Copyleft 2023 Jayser Pilapil. All rights reserved.
+ * anyone or anytwo or anywho or anywhat is allowed to use this code.
+ * Used in CSE341: Web Services
+ * 
+ * 
+ * database:
+ {
+  "login": "myusername",
+  "role": "god",
+ }
+ * if use are using userName instead of login, replace
+ mongodb.getDatabase().db().findOne({ login: username });
+ * with 
+ mongodb.getDatabase().db().findOne({ userName: username });
+ *
+ * 
+ * Sample usage:
+const { isAuthenticated, isGod, isAdmin, isModerator } = require('../middleware/authenticate');
+
+router.get('/', isAuthenticated, usersController.getAllUsers);
+ * 
+ *
+ * If you are not using app.set('view engine', 'ejs');
+ * replace
+ res.status(status).render('frontend/index', data);
+ * with
+ res.redirect("/");
+ * 
+ * frontend/index is in the folder where app.use(express.static('static')); declared
+ * 
+ */
 const mongodb = require('../data/database'); // Update the path as needed
 
 function filterAPI(req, res, status, message) {
