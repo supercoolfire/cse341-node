@@ -1,13 +1,5 @@
-const mongodb = require('../data/database');
-
-const isAuthenticated = (req, res, next) => {
-  if (req.session.user === undefined) {
-    const message = "You do not have access. You need to login";
-    filterAPI(req, res, 403, message);
-  } else {
-    next();
-  }
-};
+// authMiddleware.js
+const mongodb = require('../data/database'); // Update the path as needed
 
 function filterAPI(req, res, status, message) {
   const data = {
@@ -17,117 +9,58 @@ function filterAPI(req, res, status, message) {
   res.status(status).render('index', data);
 }
 
-const isGod = async (req, res, next) => {
-  if (req.session.user === undefined) {
-    const message = "You do not have access. You need to login";
-    filterAPI(req, res, 401, message);
-  } else {
-    const user = req.session.user.username;
-    
-    try {
-      const rolesCollection = mongodb.getDatabase().db().collection('roles');
-      // console.log(rolesCollection)
-      const userRole = await rolesCollection.findOne({ login: user });
+async function getUserRole(username) {
+  try {
+    const rolesCollection = mongodb.getDatabase().db().collection('roles');
+    const userRole = await rolesCollection.findOne({ login: username });
 
-      if (userRole && userRole.role === 'god') {
-        req.isGod = true;
-        req.isAdmin = true;
-        req.isModerator = true; // Admins automatically have moderator privileges
-        console.log('You are almighty');
-        next();
+    return userRole ? userRole.role : null;
+  } catch (error) {
+    console.error('Error fetching user role from MongoDB:', error);
+    return null;
+  }
+}
+
+function authenticateAccessLevel(requiredLevel) {
+  return async (req, res, next) => {
+    const user = req.session.user;
+
+    if (!user || !user.username) {
+      filterAPI(req, res, 401, 'Unauthorized: You need to login.');
+    } else {
+      const userRoles = {
+        god: 4,
+        admin: 3,
+        moderator: 2,
+        authenticated: 1,
+      };
+
+      // Fetch user's role from MongoDB
+      const userRole = await getUserRole(user.username);
+
+      console.log(`User Role: ${userRole}, Required Role: ${requiredLevel}`);
+
+      if (userRole && typeof userRoles[requiredLevel] === 'number') {
+        // Check if the user's role level is equal or higher than the required level
+        if (userRoles[userRole] >= userRoles[requiredLevel]) {
+          // User has the required access level, proceed to the next middleware or route
+          next();
+        } else {
+          // User does not have the required access level
+          filterAPI(req, res, 403, 'Forbidden: Insufficient access level.');
+        }
       } else {
-        message = 'You do not have mighty super user privileges.';
-        filterAPI(req, res, 403, message);
+        // Unable to fetch user role or invalid required level
+        filterAPI(req, res, 500, 'Internal server error.');
       }
-    } catch (error) {
-      console.error('Error checking mighty super user role:', error);
-      message = 'Internal server corrupted by evil thing.';
-      filterAPI(req, res, 500, message);
     }
-  }
-};
+  };
+}
 
-const isAdmin = async (req, res, next) => {
-  if (req.session.user === undefined) {
-    const message = "You do not have access. You need to login";
-    filterAPI(req, res, 401, message);
-  } else {
-    const user = req.session.user.username;
-    
-    try {
-      const rolesCollection = mongodb.getDatabase().db().collection('roles');
-      // console.log(rolesCollection)
-      const userRole = await rolesCollection.findOne({ login: user });
-
-      if (userRole && userRole.role === 'god') {
-        req.isGod = true;
-        req.isAdmin = true;
-        req.isModerator = true; // Admins automatically have moderator privileges
-        console.log('You are admin');
-        next();
-      }
-      else if (userRole && userRole.role === 'admin') {
-        req.isAdmin = true;
-        req.isModerator = true; // Admins automatically have moderator privileges
-        console.log('You are admin');
-        next();
-      } else {
-        message = 'You do not have admin privileges.';
-        filterAPI(req, res, 403, message);
-      }
-    } catch (error) {
-      console.error('Error checking admin role:', error);
-      message = 'Internal server error';
-      filterAPI(req, res, 500, message);
-    }
-  }
-};
-
-const isModerator = async (req, res, next) => {
-  if (req.session.user === undefined) {
-    const message = "You do not have access. You need to login";
-    filterAPI(req, res, 401, message);
-  } else {
-    const user = req.session.user.username;
-
-    try {
-      const rolesCollection = mongodb.getDatabase().db().collection('roles');
-      const userRole = await rolesCollection.findOne({ login: user });
-
-      if (userRole && userRole.role === 'god') {
-        req.isGod = true;
-        req.isAdmin = true;
-        req.isModerator = true; // Admins automatically have moderator privileges
-        console.log('You are admin');
-        next();
-      }
-      else if (userRole && userRole.role === 'admin') {
-        req.isModerator = true;
-        req.isAdmin = true;
-        console.log('You have moderator privileges.');
-        next();
-      } 
-      else if (userRole && userRole.role === 'moderator') {
-        req.isModerator = true;
-        console.log('You have moderator privileges.');
-        next();
-      } 
-      else {
-        message = 'You do not have moderator privileges.';
-        filterAPI(req, res, 403, message);
-      }
-    } catch (error) {
-      console.error('Error checking moderator role:', error);
-      message = 'Internal server error';
-      filterAPI(req, res, 500, message);
-    }
-  }
-};
-
-
+// Exporting the middleware and access level constants as an object
 module.exports = {
-  isAuthenticated,
-  isGod,
-  isAdmin,
-  isModerator
+  isAuthenticated: authenticateAccessLevel('authenticated'),
+  isGod: authenticateAccessLevel('god'),
+  isAdmin: authenticateAccessLevel('admin'),
+  isModerator: authenticateAccessLevel('moderator'),
 };
