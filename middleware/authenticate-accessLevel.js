@@ -18,7 +18,7 @@
  * Sample usage:
 const { isAuthenticated, isGod, isAdmin, isModerator } = require('../middleware/authenticate');
 
-router.get('/', isAuthenticated, usersController.getAllUsers);
+router.get('/', accessLevel(4), usersController.getAllUsers);
  * 
  *
  * If you are not using app.set('view engine', 'ejs');
